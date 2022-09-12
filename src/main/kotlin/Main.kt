@@ -15,6 +15,12 @@ fun main(args: Array<String>) {
     println()
     println("#### Uso de High Order Functions en objetos ####")
     usoHighOrderFunctionsEnObjetos()
+
+    println()
+    println()
+    println()
+    println("#### Uso de Lambdas ####")
+    usoLambdas()
 }
 
 fun usoDeFuncionesExtension() {
@@ -87,3 +93,30 @@ fun policeVenezuela(h: Float) = h >= 1.6f
 * funciones de extension solo se deberian usar en objetos que ya vengan por defecto en kotlin, como los String
 * */
 fun Person.checkPolice(fn: (Float) -> Boolean) = fn(height)
+
+fun usoLambdas() {
+    val n1 = 12
+    val n2 = 3
+    var funcionLambda = { x: Int, y: Int -> x + y}
+
+    // Aqui es el uso de lambda como high order function, pues la funcion es variable como se vera a continuacion
+    // Aunque primero se usa una variable con la funcion
+    println("La suma de $n1 y $n2 es: ${calculadora(n1, n2, funcionLambda)}")
+
+    funcionLambda = { x: Int, y: Int -> x - y}
+    println("La resta de $n1 y $n2 es: ${calculadora(n1, n2, funcionLambda)}")
+
+    // Ahora si se implementa con lambda (funcion anonima)
+    println("La multiplicacion de $n1 y $n2 con lambda es: ${calculadora(n1, n2, { x: Int, y: Int -> x * y })}")
+
+    // Como se puede ver, las lambdas se pueden enviar por fuera del parentesis, es mas, el IDE lo recomienda, es para
+    // mejor comprension del codigo
+    println("La potencia de 2 elevado a 5 con lambda es: ${calculadora(n1, n2)
+    // Lo importante es que la ultima linea tenga un valor (sin return)
+    { x, y ->
+        var valor = 1
+        for (i in 1..y) valor *= x
+        valor
+    }
+    }")
+}
