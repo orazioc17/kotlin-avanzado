@@ -9,6 +9,12 @@ fun main(args: Array<String>) {
     println()
     println("#### Uso de High Order Functions ####")
     usoHighOrderFunctions()
+
+    println()
+    println()
+    println()
+    println("#### Uso de High Order Functions en objetos ####")
+    usoHighOrderFunctionsEnObjetos()
 }
 
 fun usoDeFuncionesExtension() {
@@ -59,3 +65,25 @@ fun resta (x: Int, y: Int) = x - y
 fun multiplicacion (x: Int, y: Int) = x * y
 
 fun division (x: Int, y: Int) = x / y
+
+fun usoHighOrderFunctionsEnObjetos() {
+    val orazio = Person("Orazio", 1.77f)
+    val mario = Person("Mario", 1.63f)
+
+    println("${orazio.name} policia en Italia? ${if (orazio.checkPolice(::policeItalia)) "Si" else "No"}")
+    println("${orazio.name} policia en Venezuela? ${if (orazio.checkPolice(::policeVenezuela)) "Si" else "No"}")
+    println("${mario.name} policia en Italia? ${if (mario.checkPolice(::policeItalia)) "Si" else "No"}")
+    println("${mario.name} policia en Venezuela? ${if (mario.checkPolice(::policeVenezuela)) "Si" else "No"}")
+}
+
+fun policeItalia(h: Float) = h >= 1.7f
+
+fun policeVenezuela(h: Float) = h >= 1.6f
+
+/*
+* A continuacion se esta haciendo una funcion de extension de una clase que nosotros mismos creamos, como tal esto
+* se puede hacer, pero no es para nada recomendado ya que si nosotros mismos creamos la clase, es mejor y una buena
+* practica que nosotros mismos creemos la funcion dentro de la clase, haciendo buen uso del encapsulamiento, las
+* funciones de extension solo se deberian usar en objetos que ya vengan por defecto en kotlin, como los String
+* */
+fun Person.checkPolice(fn: (Float) -> Boolean) = fn(height)
