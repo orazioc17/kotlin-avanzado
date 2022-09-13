@@ -134,4 +134,17 @@ fun usoLambdas() {
     val array4 = IntArray(10) { i -> i * 3 }
     println(array4.show())
 
+    // Manipulando variables externas a la lambda
+    var suma = 0
+    recorrerArray(array4) {
+        suma += it
+    }
+    println("La suma de todos los elementos del array4 es: $suma") // 135
+
+}
+
+fun recorrerArray(array: IntArray, fn: (Int) -> Unit) {
+    for (i in array) {
+        fn(i)
+    }
 }
