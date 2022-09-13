@@ -119,4 +119,19 @@ fun usoLambdas() {
         valor
     }
     }")
+
+    val array = IntArray(10) {5}
+    println(array.show())
+
+    val array2 = IntArray(10) {it} // it es el iterador, por lo que este array se llenara con los indices en
+    // cada posicion del array
+    println(array2.show())
+
+    val array3 = IntArray(10) {it * 2} // Y aqui se llenara con los indices multiplicados por 2
+    println(array3.show())
+
+    // Renombrando el parametro por defecto que tiene la lambda (it)
+    val array4 = IntArray(10) { i -> i * 3 }
+    println(array4.show())
+
 }
