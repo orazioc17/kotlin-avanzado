@@ -1,5 +1,8 @@
 import java.util.*
 
+typealias competidor = Person.Athlete
+typealias aliasDato = MutableMap<Int, ArrayList<String>>
+
 fun main(args: Array<String>) {
     println("#### Uso de funciones de extencion ####")
     usoDeFuncionesExtension()
@@ -21,6 +24,12 @@ fun main(args: Array<String>) {
     println()
     println("#### Uso de Lambdas ####")
     usoLambdas()
+
+    println()
+    println()
+    println()
+    println("#### Uso de typealias ####")
+    usoTypealias()
 }
 
 fun usoDeFuncionesExtension() {
@@ -147,4 +156,18 @@ fun recorrerArray(array: IntArray, fn: (Int) -> Unit) {
     for (i in array) {
         fn(i)
     }
+}
+
+/***
+ * Los typealias son para poder escribir menos codigo
+ */
+fun usoTypealias(){
+    val deportista = competidor("Baseball")
+    println("Cree un Person.Athlete")
+    deportista.compete()
+
+    var saludos:  aliasDato = mutableMapOf()
+    saludos[0] = arrayListOf("Hola", "Adios")
+    saludos[1] = arrayListOf("Hi", "Bye")
+    println(saludos)
 }
