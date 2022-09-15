@@ -213,11 +213,33 @@ fun usoDesestructuracion() {
 
 fun usoTryCatchFinally() {
     try {
-        println("Division entre cero: ${5/0}")
+        println("Division entre cero: ${5 / 0}")
     } catch (e: Exception) {
         println("Vamos a manejar este error")
         println("Tipo de error: $e")
     } finally {
         println("Pase lo que pase se ejecutara esto")
     }
+
+    println()
+    println("Guardando el try cath en una variable que a su vez es lambda")
+    // Guardando el resultado de un try catch en una variable, al mismo tiempo haciendo uso de lambda
+    val resultado: (Int, Int) -> Any = { a: Int, b: Int ->
+        val res = try {
+            println("$a entre $b: ${a / b}")
+            a / b
+        } catch (e: Exception) {
+            println("Vamos a manejar este error")
+            "Division no permitida"
+        }
+        res
+    }
+
+    val res1 = resultado(2,5)
+    println(res1)
+    val res2 = resultado(8,4)
+    println(res2)
+    val res3 = resultado(9,0)
+    println(res3)
+
 }
