@@ -30,6 +30,12 @@ fun main(args: Array<String>) {
     println()
     println("#### Uso de typealias ####")
     usoTypealias()
+
+    println()
+    println()
+    println()
+    println("#### Uso de Desestructuracion ####")
+    usoDesestructuracion()
 }
 
 fun usoDeFuncionesExtension() {
@@ -166,8 +172,34 @@ fun usoTypealias(){
     println("Cree un Person.Athlete")
     deportista.compete()
 
-    var saludos:  aliasDato = mutableMapOf()
+    val saludos:  aliasDato = mutableMapOf()
     saludos[0] = arrayListOf("Hola", "Adios")
     saludos[1] = arrayListOf("Hi", "Bye")
     println(saludos)
+}
+
+fun usoDesestructuracion() {
+    val sol = Star("Sol", 1234756f, "Via Lactea")
+    println(sol)
+    val (name_star2, radius_star2, galaxy2) = Star("Sol2", 2178428f, "Via Lactea2")
+    println("Datos star2 desestructurada: $name_star2 $radius_star2 $galaxy2")
+
+    val (name_star3, radius_star3, ) = Star("Sol3", 21428f, "Via Lactea3")
+    println("Datos star3 desestructurada: $name_star3 $radius_star3")
+
+    // Para saltarseuna variable y no guardar esa informacion se usa guion bajo _
+    val (name_star4, _, galaxy4) = Star("Sol4", 1848f, "Via Lactea4")
+    println("Datos star4 desestructurada: $name_star4 $galaxy4")
+
+    val componente = Star("Sol5", 8145848f, "Via Lactea5")
+    println("Datos star5 con componentes: ${componente.component1()} ${componente.component2()} ${componente.component3()}")
+
+    val saludos:  aliasDato = mutableMapOf()
+    saludos[0] = arrayListOf("Hola", "Adios")
+    saludos[1] = arrayListOf("Hi", "Bye")
+
+    for ((index, palabras) in saludos) {
+        println("$index $palabras")
+    }
+
 }
