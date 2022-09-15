@@ -1,3 +1,4 @@
+import java.lang.Exception
 import java.util.*
 
 typealias competidor = Person.Athlete
@@ -36,6 +37,12 @@ fun main(args: Array<String>) {
     println()
     println("#### Uso de Desestructuracion ####")
     usoDesestructuracion()
+
+    println()
+    println()
+    println()
+    println("#### Uso de Try, Catch y Finally ####")
+    usoTryCatchFinally()
 }
 
 fun usoDeFuncionesExtension() {
@@ -202,4 +209,15 @@ fun usoDesestructuracion() {
         println("$index $palabras")
     }
 
+}
+
+fun usoTryCatchFinally() {
+    try {
+        println("Division entre cero: ${5/0}")
+    } catch (e: Exception) {
+        println("Vamos a manejar este error")
+        println("Tipo de error: $e")
+    } finally {
+        println("Pase lo que pase se ejecutara esto")
+    }
 }
