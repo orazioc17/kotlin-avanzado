@@ -43,6 +43,12 @@ fun main(args: Array<String>) {
     println()
     println("#### Uso de Try, Catch y Finally ####")
     usoTryCatchFinally()
+
+    println()
+    println()
+    println()
+    println("#### Uso de Throw ####")
+    usoThrowExceptions()
 }
 
 fun usoDeFuncionesExtension() {
@@ -242,4 +248,10 @@ fun usoTryCatchFinally() {
     val res3 = resultado(9,0)
     println(res3)
 
+}
+
+fun usoThrowExceptions() {
+    val password: String = "1234567"
+    if (password.length < 6) throw IllegalPasswordException("ShortPassword") // Exception("Password muy corta")
+    else println("Password segura")
 }
