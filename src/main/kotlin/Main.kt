@@ -49,6 +49,12 @@ fun main(args: Array<String>) {
     println()
     println("#### Uso de Throw ####")
     usoThrowExceptions()
+
+    println()
+    println()
+    println()
+    println("#### Uso de Scope Functions ####")
+    usoScopeFunctions()
 }
 
 fun usoDeFuncionesExtension() {
@@ -254,4 +260,46 @@ fun usoThrowExceptions() {
     val password: String = "1234567"
     if (password.length < 6) throw IllegalPasswordException("ShortPassword") // Exception("Password muy corta")
     else println("Password segura")
+}
+
+fun usoScopeFunctions() {
+    val person = Person("Anyone", 1.56f, "V713918223892")
+
+    // Para evitar estar llamando al objeto muchas veces se puede hacer de la siguiente forma
+    person.let {
+        // Cuando se usa let, se usa la palabra reservada it
+        it.height = 1.6f
+        it.passport = "V17841"
+        it.die()
+    }
+
+    person.apply {
+        // Mientras que con apply se usa this, aunque no hay necesidad de usarla
+        this.height = 1.5f
+        passport = "f891845"
+        die()
+    }
+
+    val person2 = Person("Jaimito", 1.7f, "d282093").apply {
+        //De todas formas es una mejor practica usar this para que el codigo sea mas legible
+        this.height
+        this.die()
+    }
+
+    val number = Person().run {
+        // run lo que hace es ejecutar todo el codigo pero al final la variable va a guardar (opcionalmente) lo ultimo que se retorne, como en este caso height
+        this.height = 1.9f
+        this.passport = "dsjf234234"
+        this.height
+    }
+    println(number)
+
+    val estatura = with(Person(height = 1.56f)) {
+        // with tambien retorna lo ultimo, como run, pero tiene una sintaxis distinta
+        val string: String = if (this.height > 1.67f) {
+            "La persona tiene una estatura promedio"
+        } else "La persona no es muy alta"
+        string
+    }
+    println(estatura)
 }
