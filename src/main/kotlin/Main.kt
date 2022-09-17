@@ -55,6 +55,12 @@ fun main(args: Array<String>) {
     println()
     println("#### Uso de Scope Functions ####")
     usoScopeFunctions()
+
+    println()
+    println()
+    println()
+    println("#### Uso de Elvis Operator ####")
+    usoElvisOperator()
 }
 
 fun usoDeFuncionesExtension() {
@@ -302,4 +308,15 @@ fun usoScopeFunctions() {
         string
     }
     println(estatura)
+}
+
+fun usoElvisOperator() {
+    var pais: String? = "Rusia"
+    // El operador Elvis es para manejar los null, su es null se ejecuta lo de la derecha, si no, lo de la izquierda
+    pais = pais?.uppercase() ?: "DESCONOCIDO"
+    println(pais)
+
+    var ciudad: String? = null
+    ciudad = ciudad?.uppercase() ?: "CIUDAD DESCONOCIDA"
+    println(ciudad)
 }
