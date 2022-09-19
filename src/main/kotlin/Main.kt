@@ -4,6 +4,15 @@ import java.util.*
 typealias competidor = Person.Athlete
 typealias aliasDato = MutableMap<Int, ArrayList<String>>
 
+/*
+* Para poder declarar sin inicializar una variable de un objeto por fuera para que pueda ser usada por todas las
+* funciones, hay que usar la palabra reservada lateinit
+* */
+lateinit var persona: Person
+//var persona2: Person -- Esto no seria posible, kotlin pide inicializarla por estar por fuera de funciones y demas
+lateinit var cadena: String // Tambien se puede con cadenas
+// Pero con tipos de datos primitivos no se puede usar, como los Boolean
+
 fun main(args: Array<String>) {
     println("#### Uso de funciones de extencion ####")
     usoDeFuncionesExtension()
@@ -61,6 +70,12 @@ fun main(args: Array<String>) {
     println()
     println("#### Uso de Elvis Operator ####")
     usoElvisOperator()
+
+    println()
+    println()
+    println()
+    println("#### Uso de lateinit y lazy ####")
+    usoLateinitLazy()
 }
 
 fun usoDeFuncionesExtension() {
@@ -319,4 +334,19 @@ fun usoElvisOperator() {
     var ciudad: String? = null
     ciudad = ciudad?.uppercase() ?: "CIUDAD DESCONOCIDA"
     println(ciudad)
+}
+
+fun usoLateinitLazy() {
+    persona = Person("Juanito", passport = "T47298")
+    println(persona)
+    cadena = "Variable lateinit"
+    println(cadena)
+
+    /*
+    * Lo que pasa con lazy es que el valor no se crea en el momento en que se declara, sino en el momento en que se usa
+    * por primera vez, por lo tanto esto se usa para codigo pesado, a modo de evitar la ralentizacion del hilo principal
+    * */
+    val valor: String by lazy { "Nueva" }
+    println("Aun no existe valor")
+    println(valor)
 }

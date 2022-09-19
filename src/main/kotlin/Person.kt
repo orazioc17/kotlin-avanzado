@@ -18,5 +18,9 @@ class Person(var name: String = "Sin Nombre", var height: Float = 1.6f, var pass
         }
     }
 
+    override fun toString(): String {
+        return "Mi nombre es $name, mido $height y mi pasaporte es: $passport"
+    }
+
     // fun checkPolice(fn: (Float) -> Boolean) = fn(height)
 }
